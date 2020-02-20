@@ -2,6 +2,7 @@ from . import main
 from flask import render_template,abort
 from flask_login import login_required
 from ..models import User,Blog
+from app.request import get_quote
 
 
 
@@ -9,7 +10,8 @@ from ..models import User,Blog
 @main.route('/')
 def index():
     neew=Blog.get_blog(id)
-    return render_template('home.html',pitch=neew)
+    qoute=get_quote()
+    return render_template('home.html',pitch=neew,qoute=qoute)
 
 
 

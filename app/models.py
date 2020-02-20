@@ -68,6 +68,13 @@ class Subscriber(db.Model):
     id = db.Column(db.Integer,primary_key = True)
     email = db.Column(db.String(255), unique=True, index=True)
 
+class Qoutes:
+    def __init__(self,id,author,quote):
+        self.id = id
+        self.author=author
+        self.quote=quote
+
+
 
 
 
