@@ -64,7 +64,7 @@ class comments(db.Model):
 
     @classmethod
     def get_yote(cls,id):
-        coke=comments.query.filter_by(pitch_id=id).all()
+        coke=comments.query.filter_by().all()
         return coke
 
 

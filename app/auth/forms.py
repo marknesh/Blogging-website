@@ -26,9 +26,13 @@ class LoginForm(FlaskForm):
     remember=BooleanField('remember me')
     submit=SubmitField('submit')
 
-class PitchForm(FlaskForm):
+class BlogForm(FlaskForm):
+    blog=StringField('Your pitch',validators=[DataRequired()])
+    submit = SubmitField('submit')
+class TravelForm(FlaskForm):
     pitch=StringField('Your pitch',validators=[DataRequired()])
     submit = SubmitField('submit')
+
 
 
 

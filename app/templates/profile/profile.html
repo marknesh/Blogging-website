@@ -1,9 +1,16 @@
-<h2>Hello {{user.username}}</h2>
+{% extends 'base.html' %}
 
-All  pitches for the current user
+{% block content %}
+
+   {{super () }}
+<h2>All  pitches for {{user.username}}</h2>
+
+
 
 
 {% for pitchess in lol %}
-<li> {{pitchess.pitches}} </li>
+<li>{{pitchess.pitches}}</li>
 {% endfor %}
+
+{% endblock %}
 

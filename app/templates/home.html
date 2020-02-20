@@ -4,25 +4,21 @@
 {% block content %}
 
    {{super () }}
-<h1 style="text-align:center">PITCHES</h1>
-<a href="/pitches" class="badge progress-bar-success">add new  pitch </a>
+<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/styles.css')}}">
+<body>
+<h1  style="text-align:center">AWSOME PITCHES</h1>
 <h1>CATEGORIES</h1>
-<h2>Business</h2>
+<a href="/pitches" class="badge progress-bar-success">Add Business Pitch</a>
+<a href="/travel" class="badge progress-bar-success">Add any other pitch</a>
+<h1>ALL PITCHES:</h1>
 <h3><li>Petroleum selling company</li></h3>
 
  <a href="/come" class="badge progress-bar-warning  ">Add comment</a>
-<h3><li>Banana selling company</li></h3>
-<a href="/come" class="badge progress-bar-warning  ">Add comment</a>
-<p>
+</body>
+
 {% for neew in pitch %}
 <h3><Li>{{neew.pitches}}</Li></h3>
 <a href="/come" class="badge progress-bar-warning  ">Add comment</a>
-{% endfor %}
-</p>
-
-
-{% for pitchess in lol %}
-    {{pitchess.pitches}}
 {% endfor %}
 
 
