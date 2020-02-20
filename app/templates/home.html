@@ -23,17 +23,18 @@
       {% for neew in pitch %}
            <li><a href="/blog/{{neew.id}}">{{neew.title}}</a></li>
     <br>
-           <li>{{neew.content|truncate(40)}}</li><br>
+           {{neew.content|truncate(40)}}<br>
     <a href="/blog/{{neew.id}}" class="badge progress-bar-primary ">read more</a>
 
      <li>Posted at:{{neew.posted}}</li>
     <br>
 
     <a href="/delete/{{neew.id}}">Delete</a>
+    <br>
 
       {% endfor %}
 
-    <a href="/subscribe">Subscribe here</a>
+    <a href="/subscribe"><button class="btn btn-warning">Subscribe here</button></a
 </div>
 </body>
 

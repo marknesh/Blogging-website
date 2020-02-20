@@ -104,6 +104,15 @@ def get_subscriber():
 
     return render_template('subscribe.html',subscribeform=subscribeform)
 
+@auth.route('/commentdelete/<int:comment_id>')
+def delete_comment(comment_id):
+    commentdelete=Comments.query.filter_by(id=comment_id).first()
+    db.session.delete(commentdelete)
+    db.session.commit()
+    if commentdelete:
+        flash('comment deleted successfully')
+
+    return redirect(url_for('main.index'))
 
 
 
