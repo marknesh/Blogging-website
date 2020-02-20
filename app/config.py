@@ -21,7 +21,6 @@ class DevConfig(Config):
     debug=True
 
 
-
 config_options={
     'development':DevConfig,
     'production': ProdConfig
