@@ -11,6 +11,7 @@ class User(UserMixin,db.Model):
     email = db.Column(db.String(255), unique=True, index=True)
     username = db.Column(db.String(255))
     secure_password=db.Column(db.String(255))
+    blogs=db.relationship('Blog',backref='users',lazy="dynamic")
 
 
 
@@ -37,7 +38,7 @@ class Blog(db.Model):
     content = db.Column(db.String(255))
     posted=db.Column(db.DateTime,default=datetime.utcnow)
     comments=db.relationship('Comments',backref='blogr',lazy="dynamic")
-
+    users_id=db.Column(db.Integer,db.ForeignKey('person.id'))
 
 
     def save_blog(self):

@@ -9,6 +9,9 @@ from ..email import email_sender
 @auth.route('/auth')
 
 def authorize():
+
+
+
     return render_template('auth/login.html')
 
 @auth.route('/register',methods = ["GET","POST"])
@@ -37,6 +40,8 @@ def login():
 
         flash('invalid username or password')
 
+
+
     return  render_template('auth/login.html',loginform=loginform)
 
 @auth.route('/logout')
@@ -56,6 +61,8 @@ def get_comments(blog_id):
         popo=Comments(comment=commentnini.comment.data,blogr=blog)
         db.session.add(popo)
         db.session.commit()
+
+
     rada = Comments.query.filter_by(blogr=blog).all()
 
     return  render_template('auth/new_comment.html',acha=commentnini,blog=blog,rada=rada)
@@ -92,7 +99,6 @@ def delete(blog_id):
 
 
 @auth.route('/subscribe', methods=["GET", "POST"])
-@login_required
 def get_subscriber():
     subscribeform = SubscriberForm()
     if subscribeform.validate_on_submit():

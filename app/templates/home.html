@@ -21,7 +21,7 @@
 
 
       {% for neew in pitch %}
-           <li><a href="/blog/{{neew.id}}">{{neew.title}}</a></li>
+           <a href="/blog/{{neew.id}}">{{neew.title}}</a>
     <br>
            {{neew.content|truncate(40)}}<br>
     <a href="/blog/{{neew.id}}" class="badge progress-bar-primary ">read more</a>
@@ -29,7 +29,7 @@
      <li>Posted at:{{neew.posted}}</li>
     <br>
 
-    <a href="/delete/{{neew.id}}">Delete</a>
+    <a href="/delete/{{neew.id}}"><span class="badge progress-bar-danger">Delete BlogPost</span></a>
     <br>
 
       {% endfor %}

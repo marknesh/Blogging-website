@@ -1,4 +1,4 @@
-export MAIL_USERNAME='mikeknowles.dez@gmail.com'
+export MAIL_USERNAME=
 export MAIL_PASSWORD='ilhhpoblfynemnkh'
 
 
