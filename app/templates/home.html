@@ -4,6 +4,7 @@
 {% block content %}
 
    {{super () }}
+
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/styles.css')}}">
 <body>
 <div class="middle">
@@ -34,13 +35,19 @@
 
       {% endfor %}
 
-    <a href="/subscribe"><button class="btn btn-warning">Subscribe here</button></a>
+    <a href="/subscribe"><button class="btn btn-warning">Subscribe </button></a>
 
 </div>
 <div><h3><B>{{qoute.quote}}</B></h3></div>
 <br>
 
 <div><h4>~{{qoute.author}}</h4></div>
+
+<div class="newr">
+    To get new blog notifications
+    <a href="/subscribe"><button class="btn btn-warning">Subscribe here </button></a>
+</div>
+
 
 </body>
 
