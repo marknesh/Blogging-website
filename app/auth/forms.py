@@ -33,6 +33,9 @@ class BlogForm(FlaskForm):
 class CommentForm(FlaskForm):
     comment=StringField('comment',validators=[DataRequired()])
     submit = SubmitField('submit')
+class SubscriberForm(FlaskForm):
+    email = StringField('Your email address', validators=[DataRequired(), Email()])
+    submit = SubmitField('submit')
 
 
 

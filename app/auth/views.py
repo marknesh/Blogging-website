@@ -1,8 +1,8 @@
 from . import auth
 from flask import render_template,redirect,url_for,request,flash
 from flask_login import login_required,login_user,logout_user
-from .forms import RegistrationForm,LoginForm,CommentForm,BlogForm
-from ..models import db,Comments,Blog,User
+from .forms import RegistrationForm,LoginForm,CommentForm,BlogForm,SubscriberForm
+from ..models import db,Comments,Blog,User,Subscriber
 from ..email import email_sender
 
 
@@ -65,10 +65,15 @@ def get_comments(blog_id):
 def get_blogs():
     blogform=BlogForm()
     if blogform.validate_on_submit():
+        subscribe_list=[]
         title=blogform.title.data
         content=blogform.content.data
         new_blog=Blog(title=title,content=content)
         new_blog.save_blog()
+        mail=Subscriber.query.all()
+        for user in mail:
+            subscribe_list.append(user.email)
+            email_sender("new blog post", "email/welcome", user.email, user=user)
 
         return  redirect(url_for('main.index'))
 
@@ -84,6 +89,25 @@ def delete(blog_id):
         flash('blog deleted successfully')
 
     return redirect(url_for('main.index'))
+
+
+@auth.route('/subscribe', methods=["GET", "POST"])
+@login_required
+def get_subscriber():
+    subscribeform = SubscriberForm()
+    if subscribeform.validate_on_submit():
+        email= subscribeform.email.data
+        new_subscriber = Subscriber(email=email)
+        new_subscriber.save_blog()
+
+        return redirect(url_for('main.index'))
+
+    return render_template('subscribe.html',subscribeform=subscribeform)
+
+
+
+
+
 
 
 

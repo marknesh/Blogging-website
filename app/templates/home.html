@@ -5,6 +5,7 @@
 
    {{super () }}
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/styles.css')}}">
+<body>
 <div class="middle">
 
      {% for message in get_flashed_messages() %}
@@ -15,16 +16,26 @@
       {% endfor %}
 
 
-<a href="/blogform" class="badge progress-bar-warning  ">write new blog</a>
+<a href="/blogform" class="btn btn-success ">write new blog</a>
 
 
 
       {% for neew in pitch %}
            <li><a href="/blog/{{neew.id}}">{{neew.title}}</a></li>
+    <br>
+           <li>{{neew.content|truncate(40)}}</li><br>
+    <a href="/blog/{{neew.id}}" class="badge progress-bar-primary ">read more</a>
+
+     <li>Posted at:{{neew.posted}}</li>
+    <br>
+
     <a href="/delete/{{neew.id}}">Delete</a>
 
       {% endfor %}
+
+    <a href="/subscribe">Subscribe here</a>
 </div>
+</body>
 
 
 

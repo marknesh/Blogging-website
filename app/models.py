@@ -67,6 +67,15 @@ class Comments(db.Model):
         db.session.add(self)
         db.session.commit()
 
+class Subscriber(db.Model):
+    __tablename__ = 'subscriber'
+    id = db.Column(db.Integer,primary_key = True)
+    email = db.Column(db.String(255), unique=True, index=True)
+
+
+
+
+
 
 
 
