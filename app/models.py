@@ -29,32 +29,35 @@ class User(UserMixin,db.Model):
     def verify_password(self,password):
         return check_password_hash(self.secure_password,password)
 
-class pitch(db.Model):
-    __tablename__='pitched'
+class Blog(db.Model):
+    __tablename__='blogs'
     id = db.Column(db.Integer, primary_key=True)
-    pitches=db.Column(db.String(255))
+    title=db.Column(db.String(255))
+    content = db.Column(db.String(255))
+    comments=db.relationship('Comments',backref='blogr',lazy="dynamic")
 
 
-    def save_pitch(self):
+
+    def save_blog(self):
         db.session.add(self)
         db.session.commit()
 
     @classmethod
 
 
-    def get_pitch(cls,id):
-        eka=pitch.query.filter_by().all()
+    def get_blog(cls,id):
+        eka=Blog.query.filter_by().all()
         return eka
 
     @login_manager.user_loader
     def load_user(user_id):
         return User.query.get(int(user_id))
 
-class comments(db.Model):
+class Comments(db.Model):
     __tablename__='comments'
     id =db.Column(db.Integer, primary_key=True)
-    pitch_id= db.Column(db.Integer)
     comment=db.Column(db.String(255))
+    blog_id=db.Column(db.Integer,db.ForeignKey('blogs.id'))
 
 
 
@@ -64,7 +67,7 @@ class comments(db.Model):
 
     @classmethod
     def get_yote(cls,id):
-        coke=comments.query.filter_by().all()
+        coke=Comments.query.filter_by().all()
         return coke
 
 

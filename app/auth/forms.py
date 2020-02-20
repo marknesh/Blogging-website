@@ -27,16 +27,15 @@ class LoginForm(FlaskForm):
     submit=SubmitField('submit')
 
 class BlogForm(FlaskForm):
-    blog=StringField('Your pitch',validators=[DataRequired()])
+    title=StringField('Your Title',validators=[DataRequired()])
+    content=StringField('Content',validators=[DataRequired()])
     submit = SubmitField('submit')
-class TravelForm(FlaskForm):
-    pitch=StringField('Your pitch',validators=[DataRequired()])
+class CommentForm(FlaskForm):
+    comment=StringField('comment',validators=[DataRequired()])
     submit = SubmitField('submit')
 
 
 
 
-class commmentForm(FlaskForm):
-    comment = StringField('Leave a comment',validators=[DataRequired()])
-    submit = SubmitField('submit')
+
 

@@ -1,9 +1,8 @@
 from . import auth
 from flask import render_template,redirect,url_for,request,flash
 from flask_login import login_required,login_user,logout_user
-from .forms import RegistrationForm,LoginForm,commmentForm,PitchForm,TravelForm
-from ..models import db,comments,pitch
-from ..models import User,pitch
+from .forms import RegistrationForm,LoginForm,CommentForm,BlogForm
+from ..models import db,Comments,Blog,User
 from ..email import email_sender
 
 
@@ -45,53 +44,40 @@ def logout():
     logout_user()
     return redirect(url_for('main.index'))
 
-@auth.route('/petrol',methods=['GET','POST'])
-@login_required
-def get_petroleum():
-    return render_template('petroleum.html')
 
-@auth.route('/come',methods=['GET','POST'])
+
+@auth.route('/come/<blog_id>',methods=['GET','POST'])
 @login_required
-def get_comments():
-    commentnini=commmentForm()
+def get_comments(blog_id):
+    blog=Blog.query.filter_by(blog_id=id).all()
+    commentnini=CommentForm()
     if commentnini.validate_on_submit():
         comm=commentnini.comment.data
-        popo=comments(comment=comm)
+        popo=Comments(comment=comm)
         popo.save_comment()
 
         return redirect(url_for('main.index'))
 
 
-    dic = comments.get_yote(id)
-    return  render_template('auth/new_comment.html',acha=commentnini,comment=dic)
+    dic = Comments.get_yote(id)
+    return  render_template('auth/new_comment.html',acha=commentnini,comment=dic,blog=blog)
 
-@auth.route('/pitches',methods = ["GET","POST"])
+@auth.route('/blogform',methods = ["GET","POST"])
 @login_required
-def get_pitches():
-    pitchform=PitchForm()
-    if pitchform.validate_on_submit():
-        pitches=pitchform.pitch.data
-        new_pitches=pitch(pitches=pitches)
-        new_pitches.save_pitch()
+def get_blogs():
+    blogform=BlogForm()
+    if blogform.validate_on_submit():
+        title=blogform.title.data
+        content=blogform.content.data
+        new_blog=Blog(title=title,content=content)
+        new_blog.save_blog()
 
         return  redirect(url_for('main.index'))
-    neew=pitch.get_pitch(id)
 
-    return  render_template('pitches.html',pitchform=pitchform,pitch=neew)
 
-@auth.route('/travel',methods = ["GET","POST"])
-@login_required
-def get_travel():
-    travelform=TravelForm()
-    if travelform.validate_on_submit():
-        travels=travelform.pitch.data
-        new_travels=pitch(pitches=travels)
-        new_travels.save_pitch()
+    return  render_template('pitches.html',blogform=blogform)
 
-        return  redirect(url_for('main.index'))
-    neew=pitch.get_pitch(id)
 
-    return render_template('travel.html',pitch=neew,travelform=travelform)
 
 
 

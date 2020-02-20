@@ -1,14 +1,14 @@
 from . import main
 from flask import render_template,abort
 from flask_login import login_required
-from ..models import User,pitch
-from ..auth.forms import PitchForm
+from ..models import User,Blog
+
 
 
 
 @main.route('/')
 def index():
-    neew=pitch.get_pitch(id)
+    neew=Blog.get_blog(id)
     return render_template('home.html',pitch=neew)
 
 
