@@ -5,17 +5,16 @@
 
    {{super () }}
 <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/styles.css')}}">
-<body>
+
 
 <a href="/blogform" class="badge progress-bar-warning  ">write new blog</a>
 
- <a href="/come" class="badge progress-bar-warning  ">Add comment</a>
-</body>
 
-{% for neew in pitch %}
-<h3><Li>{{neew.title}}</Li></h3>
 
-{% endfor %}
+      {% for neew in pitch %}
+           <h3><Li><a href="/blog/{{neew.id}}">{{neew.title}}</a></Li></h3>
+
+      {% endfor %}
 
 
 

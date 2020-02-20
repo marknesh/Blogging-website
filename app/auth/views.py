@@ -46,21 +46,18 @@ def logout():
 
 
 
-@auth.route('/come/<blog_id>',methods=['GET','POST'])
+@auth.route('/blog/<int:blog_id>',methods=['GET','POST'])
 @login_required
 def get_comments(blog_id):
-    blog=Blog.query.filter_by(blog_id=id).all()
     commentnini=CommentForm()
+    blog = Blog.query.filter_by(id=blog_id).first()
     if commentnini.validate_on_submit():
         comm=commentnini.comment.data
         popo=Comments(comment=comm)
         popo.save_comment()
+    rada = Comments.query.filter_by(blogr=blog).all()
 
-        return redirect(url_for('main.index'))
-
-
-    dic = Comments.get_yote(id)
-    return  render_template('auth/new_comment.html',acha=commentnini,comment=dic,blog=blog)
+    return  render_template('auth/new_comment.html',acha=commentnini,blog=blog,rada=rada)
 
 @auth.route('/blogform',methods = ["GET","POST"])
 @login_required
