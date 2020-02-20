@@ -75,6 +75,17 @@ def get_blogs():
 
     return  render_template('pitches.html',blogform=blogform)
 
+@auth.route('/delete/<blog_id>')
+def delete(blog_id):
+    blogdelete=Blog.query.filter_by(id=blog_id).first()
+    db.session.delete(blogdelete)
+    db.session.commit()
+    if blogdelete:
+        flash('blog deleted successfully')
+
+    return redirect(url_for('main.index'))
+
+
 
 
 
