@@ -1,8 +1,6 @@
 
 ## Application name
-Neshco-pitches
-
-![](app/static/images/images.jpeg)
+Neshco-blogs
 
 ## Description
 This application is used to pitch different ideas ideas based on different categories.
