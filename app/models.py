@@ -65,10 +65,7 @@ class Comments(db.Model):
         db.session.add(self)
         db.session.commit()
 
-    @classmethod
-    def get_yote(cls,id):
-        coke=Comments.query.filter_by().all()
-        return coke
+
 
 
 

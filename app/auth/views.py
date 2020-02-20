@@ -52,9 +52,10 @@ def get_comments(blog_id):
     commentnini=CommentForm()
     blog = Blog.query.filter_by(id=blog_id).first()
     if commentnini.validate_on_submit():
-        comm=commentnini.comment.data
-        popo=Comments(comment=comm)
-        popo.save_comment()
+
+        popo=Comments(comment=commentnini.comment.data,blogr=blog)
+        db.session.add(popo)
+        db.session.commit()
     rada = Comments.query.filter_by(blogr=blog).all()
 
     return  render_template('auth/new_comment.html',acha=commentnini,blog=blog,rada=rada)
