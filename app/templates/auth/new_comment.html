@@ -20,14 +20,16 @@
     posted at:{{blog.posted}}
     <br>
     {% if rada %}
-    {% for rada in rada%}
+      {% for rada in rada%}
 
       <li>{{rada.comment}}</li>
     <a href="/commentdelete/{{rada.id}}">Delete comment</a>
+      {% endfor %}
     {% else %}
-    no comments
+    <B> NO COMMENTS</B>
+
     {% endif %}
-    {% endfor %}
+
 
 
 </div>
