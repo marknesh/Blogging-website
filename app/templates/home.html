@@ -23,7 +23,7 @@
 
 
       {% for neew in pitch %}
-           <a href="/blog/{{neew.id}}">{{neew.title}}</a>
+    <h3><a href="/blog/{{neew.id}}">{{neew.title}}</a></h3>
     <br>
            {{neew.content|truncate(40)}}<br>
     <a href="/blog/{{neew.id}}" class="badge progress-bar-primary ">read more</a>
