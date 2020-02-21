@@ -85,7 +85,7 @@ def get_blogs():
         return  redirect(url_for('main.index'))
 
 
-    return  render_template('pitches.html',blogform=blogform)
+    return  render_template('blogs.html',blogform=blogform)
 
 @auth.route('/delete/<blog_id>')
 def delete(blog_id):
